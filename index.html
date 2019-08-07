@@ -14,8 +14,8 @@
 		<div id="app">
 			<div v-if="loading">Carregando...</div>
 			<div v-else>
-				<!--button v-bind:click="tipo=viva">Viva Real</button>
-				<button v-bind:click="tipo=zap">Zap</button-->
+				<button @click="changeTipo('viva')">Viva Real</button>
+				<button @click="changeTipo('zap')">Zap</button>
 				<div v-for="item in data">
 					{{ item.usableAreas }}
 				</div>

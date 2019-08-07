@@ -20,5 +20,10 @@ var app = new Vue({
 		})/*.finally(() => {
 			this.loading = false
 		})*/
+	},
+	methods: {
+		changeTipo: function(tipo_) {
+			alert("tipo:"+tipo_);
+		}
 	}
 })
