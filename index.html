@@ -13,11 +13,21 @@
 		<h1>Imóveis</h1>
 		<div id="app">
 			<div v-if="loading">Carregando...</div>
-			<div v-else>
+			<div v-if="tipo">Tipo: {{ tipo }}</div>
+			<div>
 				<button @click="changeTipo('viva')">Viva Real</button>
 				<button @click="changeTipo('zap')">Zap</button>
+				<button @click="changeTipo(null)">Todos</button>
 				<div v-for="item in data">
-					{{ item.usableAreas }}
+					<span v-if="tipo=='zap'">
+						<span v-if="item.usableAreas>100">{{ item.usableAreas }}</span>
+					</span>
+					<span v-else-if="tipo=='viva'">
+						<span v-if="item.usableAreas<100">{{ item.usableAreas }}</span>
+					</span>
+					<span v-else>
+						<span>{{ item.usableAreas }}</span>
+					</span>
 				</div>
 			</div>
 		</div>

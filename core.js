@@ -23,7 +23,7 @@ var app = new Vue({
 	},
 	methods: {
 		changeTipo: function(tipo_) {
-			alert("tipo:"+tipo_);
+			this.tipo=tipo_;
 		}
 	}
 })
