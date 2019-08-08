@@ -50,3 +50,18 @@ var app = new Vue({
 		}
 	}
 })
+
+Vue.component('item-list', {
+
+	/*data: itemData,
+	/*data: function() {
+		return {
+			count: 0,
+		}
+	},/*-*/
+	props: ['item'],
+	template: `<div>
+					<singe-item> {{ item.usableAreas }} </singe-item>
+					<br>
+			   </div>`,
+})

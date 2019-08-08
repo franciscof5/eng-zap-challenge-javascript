@@ -9,11 +9,11 @@
 - [x] Get the data via axios
 - [x] Filter data with array filter
 - [x] Create interface for user to select tipo (viva/zap) and aplly filters
-- [ ] Create reusable template for item view
-- [ ] Create front-end for display multiple vies
+- [x] Create reusable template for item view
 - [ ] Infinity scroll
 - [ ] Single view
 - [ ] Beutify
+- [ ] Extra: transpill with Babel
 
 Root Instance
 └─ RealtyList

@@ -13,26 +13,29 @@
 		<h1>Imóveis</h1>
 		<div id="app">
 			<div v-if="loading">Carregando...</div>
-			<div v-if="tipo">Tipo: {{ tipo }}</div>
+			<div>Tipo: {{ (tipo==null) ? "todos" : tipo }}</div>
 			<div>
 				<button @click="changeTipo('viva')">Viva Real</button>
 				<button @click="changeTipo('zap')">Zap</button>
 				<button @click="changeTipo(null)">Todos</button>
 				
 					<span v-if="tipo=='zap'">
-						<div v-for="item in dataZap">
-							<span>{{ item.pricingInfos.price }} {{ item.usableAreas }} {{ item.pricingInfos.price/item.usableAreas*100 }}</span>
-						</div>
+						<item-list 
+							v-for="item in dataZap"
+							v-bind:item="item">
+						</item-list>
 					</span>
 					<span v-else-if="tipo=='viva'">
-						<div v-for="item in dataViva">
-							<span>{{ item.usableAreas }}</span>
-						</div>
+						<item-list 
+							v-for="item in dataViva"
+							v-bind:item="item">
+						</item-list>
 					</span>
 					<span v-else>
-						<div v-for="item in data">
-							<span>{{ item.usableAreas }}</span>
-						</div>
+						<item-list 
+							v-for="item in data"
+							v-bind:item="item">
+						</item-list>
 					</span>
 				</div>
 			</div>
