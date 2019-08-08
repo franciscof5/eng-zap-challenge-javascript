@@ -20,8 +20,8 @@ var app = new Vue({
 			
 			this.dataZap = response.data.filter(function(item) {
 				if(
-					(item.pricingInfos.businessType == "RENTAL" && item.pricingInfos.rentalTotalPrice<=3500) ||
-					(item.pricingInfos.businessType == "SALE" && item.pricingInfos.price<=600000) &&
+					(item.pricingInfos.businessType == "RENTAL" && item.pricingInfos.rentalTotalPrice>=3500) ||
+					(item.pricingInfos.businessType == "SALE" && item.pricingInfos.price>=600000) &&
 					(item.address.geoLocation.location.lon>0 && item.address.geoLocation.location.lat>0) &&
 					(item.usableAreas>0 && (item.pricingInfos.price/item.usableAreas)<=35)
 				)
@@ -31,7 +31,7 @@ var app = new Vue({
 			this.dataViva = response.data.filter(function(item) {
 				if(
 					(item.pricingInfos.businessType == "RENTAL" && item.pricingInfos.rentalTotalPrice<=4000) ||
-					(item.pricingInfos.businessType == "SALE" && item.pricingInfos.price<=700000) &&
+					(item.pricingInfos.businessType == "SALE" && item.pricingInfos.price<700000) &&
 					(item.address.geoLocation.location.lon>0 && item.address.geoLocation.location.lat>0)
 				)
 				return item;

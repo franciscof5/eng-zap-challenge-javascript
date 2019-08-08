@@ -13,30 +13,32 @@
 		<h1>Imóveis</h1>
 		<div id="app">
 			<div v-if="loading">Carregando...</div>
-			<div>Tipo: {{ (tipo==null) ? "todos" : tipo }}</div>
-			<div>
-				<button @click="changeTipo('viva')">Viva Real</button>
-				<button @click="changeTipo('zap')">Zap</button>
-				<button @click="changeTipo(null)">Todos</button>
-				
-					<span v-if="tipo=='zap'">
-						<item-list 
-							v-for="item in dataZap"
-							v-bind:item="item">
-						</item-list>
-					</span>
-					<span v-else-if="tipo=='viva'">
-						<item-list 
-							v-for="item in dataViva"
-							v-bind:item="item">
-						</item-list>
-					</span>
-					<span v-else>
-						<item-list 
-							v-for="item in data"
-							v-bind:item="item">
-						</item-list>
-					</span>
+			<div v-else>
+				<div>Tipo: {{ (tipo==null) ? "todos" : tipo }}</div>
+				<div>
+					<button @click="changeTipo('viva')">Viva Real</button>
+					<button @click="changeTipo('zap')">Zap</button>
+					<button @click="changeTipo(null)">Todos</button>
+					
+						<span v-if="tipo=='zap'">
+							<item-list 
+								v-for="item in dataZap"
+								v-bind:item="item">
+							</item-list>
+						</span>
+						<span v-else-if="tipo=='viva'">
+							<item-list 
+								v-for="item in dataViva"
+								v-bind:item="item">
+							</item-list>
+						</span>
+						<span v-else>
+							<item-list 
+								v-for="item in data"
+								v-bind:item="item">
+							</item-list>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>

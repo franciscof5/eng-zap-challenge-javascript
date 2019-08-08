@@ -1,7 +1,12 @@
 # Code Challenge ZAP Group
 
 * Vue.js
-* Vuex
+
+
+		como rodar localmente?
+		como rodar os testes?
+		como fazer o deploy?
+
 
 ## TODO
 - [ ] Change vue script to production
@@ -18,6 +23,7 @@
 - [ ] Extra: transpill with Babel
 - [ ] Extra: get user location
 - [ ] Extra: AI to suggest reatly
+- [ ] Extra: cache images
 
 		Root Instance
 		└─ RealtyList
