@@ -13,6 +13,7 @@
 - [ ] Infinity scroll
 - [ ] Single view
 - [ ] Beautify (bootstrap, style)
+- [ ] Review rules and job description
 - [ ] Extra: transpill with Babel
 
 Root Instance
