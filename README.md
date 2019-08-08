@@ -3,6 +3,17 @@
 * Vue.js
 * Vuex
 
+## TODO
+- [ ] Change vue script to production
+- [x] Install and load vue script
+- [ ] Get the data list via axios
+- [ ] Filter data with array filter
+- [ ] Create reusable template for item view
+- [ ] Create front-end for display multiple vies
+- [ ] Infinity scroll
+- [ ] Single view
+- [ ] Beutify
+
 Root Instance
 └─ RealtyList
    ├─ Realty
