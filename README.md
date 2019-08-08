@@ -15,14 +15,23 @@
 - [ ] Beautify (bootstrap, style)
 - [ ] Review rules and job description
 - [ ] Extra: transpill with Babel
+- [ ] Extra: get user location
+- [ ] Extra: AI to suggest reatly
 
 Root Instance
+
 └─ RealtyList
+
    ├─ Realty
+
    │  ├─ Magnify
+
    │  └─ Favorite
+
    └─ Realty
+
       ├─ Magnify
+      
       └─ Favorite
 
 
