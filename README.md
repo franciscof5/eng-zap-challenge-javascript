@@ -12,7 +12,7 @@
 - [x] Create reusable template for item view
 - [ ] Infinity scroll
 - [ ] Single view
-- [ ] Beutify
+- [ ] Beautify (bootstrap, style)
 - [ ] Extra: transpill with Babel
 
 Root Instance
