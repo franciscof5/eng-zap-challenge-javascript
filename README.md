@@ -18,21 +18,14 @@
 - [ ] Extra: get user location
 - [ ] Extra: AI to suggest reatly
 
-Root Instance
-
-└─ RealtyList
-
-   ├─ Realty
-
-   │  ├─ Magnify
-
-   │  └─ Favorite
-
-   └─ Realty
-
-      ├─ Magnify
-      
-      └─ Favorite
+		Root Instance
+		└─ RealtyList
+		   ├─ Realty
+		   │  ├─ Magnify
+		   │  └─ Favorite
+		   └─ Realty
+		      ├─ Magnify
+		      └─ Favorite
 
 
 ## As regras de negócio atuais são as seguintes:
