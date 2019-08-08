@@ -4,8 +4,14 @@
 
 
 		como rodar localmente?
+		* Você precisa estar conectado a internet, dependências e dados são obtidos remotamente
+		* Apenas abra o arquivo index.html
+
 		como rodar os testes?
+		* Basta navegar pela interface
+
 		como fazer o deploy?
+		* Inicialmente não há necessidade de deploy
 
 
 ## TODO
