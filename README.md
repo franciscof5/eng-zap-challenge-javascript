@@ -7,8 +7,8 @@
 - [ ] Change vue script to production
 - [x] Install and load vue script
 - [x] Get the data via axios
-- [ ] Filter data with array filter
-- [ ] Create interface for user to select tipo (viva/zap) and aplly filters
+- [x] Filter data with array filter
+- [x] Create interface for user to select tipo (viva/zap) and aplly filters
 - [ ] Create reusable template for item view
 - [ ] Create front-end for display multiple vies
 - [ ] Infinity scroll

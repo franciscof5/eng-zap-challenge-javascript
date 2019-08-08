@@ -21,7 +21,7 @@
 				
 					<span v-if="tipo=='zap'">
 						<div v-for="item in dataZap">
-							<span>{{ item.usableAreas }}</span>
+							<span>{{ item.pricingInfos.price }} {{ item.usableAreas }} {{ item.pricingInfos.price/item.usableAreas*100 }}</span>
 						</div>
 					</span>
 					<span v-else-if="tipo=='viva'">
