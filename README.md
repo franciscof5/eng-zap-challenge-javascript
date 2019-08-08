@@ -9,6 +9,7 @@
 - [x] Get the data via axios
 - [x] Filter data with array filter
 - [x] Create interface for user to select tipo (viva/zap) and aplly filters
+- [ ] Extra: create more filters (pricingInfos.businessType, parkingSpaces, bathrooms, bedrooms, pricingInfos.price range, pricingInfos.rentalTotalPrice range)
 - [x] Create reusable template for item view
 - [ ] Infinity scroll
 - [ ] Single view
@@ -49,3 +50,4 @@
  ** Quando o imóvel estiver dentro do bounding box dos arredores do GrupoZap (descrito abaixo) considere a regra de valor máximo (do aluguel do imóvel) 50% maior.
 
 Old link: http://grupozap-code-challenge.s3-website-us-east-1.amazonaws.com/#zap
+Challenge description: https://grupozap.github.io/cultura/challenges/engineering.html
