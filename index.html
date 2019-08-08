@@ -3,7 +3,7 @@
 	<head>
 		<!--link rel="stylesheet" href="index.css"-->
 		<!-- production version, optimized for size and speed -->
-		<script src="https://cdn.jsdelivr.net/npm/vue.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
 		<script src="core.js"></script>
 		<title>Desafio Grupo ZAP - Javascript - Francisco Mat</title>
@@ -18,15 +18,21 @@
 				<button @click="changeTipo('viva')">Viva Real</button>
 				<button @click="changeTipo('zap')">Zap</button>
 				<button @click="changeTipo(null)">Todos</button>
-				<div v-for="item in data">
+				
 					<span v-if="tipo=='zap'">
-						<span v-if="item.usableAreas>100">{{ item.usableAreas }}</span>
+						<div v-for="item in dataZap">
+							<span>{{ item.usableAreas }}</span>
+						</div>
 					</span>
 					<span v-else-if="tipo=='viva'">
-						<span v-if="item.usableAreas<100">{{ item.usableAreas }}</span>
+						<div v-for="item in dataViva">
+							<span>{{ item.usableAreas }}</span>
+						</div>
 					</span>
 					<span v-else>
-						<span>{{ item.usableAreas }}</span>
+						<div v-for="item in data">
+							<span>{{ item.usableAreas }}</span>
+						</div>
 					</span>
 				</div>
 			</div>
