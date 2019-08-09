@@ -1,0 +1,45 @@
+
+<html>
+	<head>
+		<!--link rel="stylesheet" href="index.css"-->
+		<!-- production version, optimized for size and speed -->
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<script src="core.js"></script>
+		<title>Desafio Grupo ZAP - Javascript - Francisco Mat</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>Imóveis</h1>
+		<div id="app">
+			<div v-if="loading">Carregando...</div>
+			<div v-else>
+				<div>Tipo: {{ (tipo==null) ? "todos" : tipo }}</div>
+				<div>
+					<button @click="changeTipo('viva')">Viva Real</button>
+					<button @click="changeTipo('zap')">Zap</button>
+					<button @click="changeTipo(null)">Todos</button>
+					
+					<span v-if="tipo=='zap'">
+						<item-list v-for="item in dataZap" v-bind:item="item"></item-list>
+					</span>
+
+					<span v-else-if="tipo=='viva'">
+						<item-list v-for="item in dataViva" v-bind:item="item"></item-list>
+					</span>
+
+					<span v-else>
+						<item-list v-for="item in data" v-bind:item="item"></item-list>
+					</span>
+				</div>
+			</div>
+		</div>
+		
+		<script src="core.js"></script>
+		
+		
+	</body>
+</html>
