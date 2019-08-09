@@ -66,10 +66,9 @@ Vue.component('item-list', {
 			   </div>`,
 });
 
-Vue.component('slide-list', {
-	props: ['item'],
-	template: `
-			<section class="hero-area">
+Vue.component('featured-slide-list', {
+	//props: ['item'],
+	template: `<section class="hero-area">
 		        <div class="hero-slides owl-carousel">
 		            <!-- Single Hero Slide -->
 		            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero1.jpg);">
@@ -108,5 +107,40 @@ Vue.component('slide-list', {
 		                </div>
 		            </div>
 		        </div>
-		    </section>`,
+		    </section>`
 });
+
+Vue.component('header-top', {
+	template: `<header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="h-100 d-md-flex justify-content-between align-items-center">
+                <div class="email-address">
+                    <a href="mailto:contato@zapimoveis.com.br">contato@zapimoveis.com.br</a>
+                </div>
+                <div class="phone-number d-flex">
+                    <div class="icon">
+                        <img src="img/icons/phone-call.png" alt="">
+                    </div>
+                    <div class="number">
+                        <a href="tel:11 3333 2222">11 3333 2222</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header Area -->
+        <div class="main-header-area" id="stickyHeader">
+            <div class="classy-nav-container breakpoint-off">
+                <!-- Classy Menu -->
+                <nav class="classy-navbar justify-content-between" id="southNav">
+
+                    <!-- Logo -->
+                    <a class="nav-brand" href="index.html"><img src="logo_zap.svg" alt=""></a>
+
+                </nav>
+            </div>
+        </div>
+    </header>`
+})
