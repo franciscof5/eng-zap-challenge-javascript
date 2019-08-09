@@ -6,31 +6,23 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
-
-    <script src="core.js"></script> 
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
+    <!--script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script-->
+    <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Plugins js -->
-    <script src="js/plugins.js"></script>
-    <script src="js/classy-nav.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
-    <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/classy-nav.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <!--script src="js/active.js"></script-->
+    <script src="core.js"></script>
            
-    <!-- Title  -->
     <title>Desafio Grupo ZAP - Javascript - Francisco Mat</title>
 
-    <!-- Favicon  -->
-    <link rel="icon" href="favicon.ico">
+    <!--link rel="icon" href="favicon.ico"-->
 
-    <!-- Style CSS -->
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -45,11 +37,11 @@
 
     <header-top></header-top>
     
-    <!--featured-slide-list></featured-slide-list-->
+    <!--featured-slide-list v-bind:data="dataSlider"></featured-slide-list-->
     
     <!--search-area></search-area-->
     
-    <featured-list v-bind:data="data"></featured-list>
+    <featured-list v-bind:data="dataZap"></featured-list>
 
     <!--call-action></call-action-->
     
@@ -60,8 +52,6 @@
     <!--footer-end></footer-end-->
 </div>
 
-<script src="core.js"></script>
-
-</body>
+<script src="core.js"></script></body>
 
 </html>

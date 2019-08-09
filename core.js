@@ -8,11 +8,13 @@ var app = new Vue({
 			data: 'Loagin data from zap servers...',
 			dataZap: null,
 			dataViva: null,
+            dataSlider: null,
 		}
 	},
 	mounted () {
 		axios
 		.get('http://grupozap-code-challenge.s3-website-us-east-1.amazonaws.com/sources/source-1.json')
+        //.get('http://grupozap-code-challenge.s3-website-us-east-1.amazonaws.com/sources/source-sample.json')
 		.then(response => {
 			this.loading = false;
 			
@@ -27,6 +29,7 @@ var app = new Vue({
 				)
 				return item;
 			});
+            this.dataZap = this.dataZap.slice(0,4);
 
 			this.dataViva = response.data.filter(function(item) {
 				if(
@@ -36,19 +39,22 @@ var app = new Vue({
 				)
 				return item;
 			});
+            this.dataViva = this.dataViva.slice(0,4);
 
+            this.dataSlider = this.dataZap.slice(0,3);
 		}).catch(error => {
 			console.log(error)
 			this.errored = true
 		})/*.finally(() => {
 			this.loading = false
 		})*/
-	},
+	}/*,
 	methods: {
 		changeTipo: function(tipo_) {
+            alert("tipo"+tipo_);
 			this.tipo=tipo_;
 		}
-	}
+	}*/
 });
 
 Vue.component('item-list', {
@@ -95,48 +101,31 @@ Vue.component('header-top', {
 
                     <!-- Logo -->
                     <a class="nav-brand" href="index.html"><img src="logo_zap.svg" alt=""></a>
-
+                    <button @click="changeTipo('viva')">Viva Real</button>
+                    <button @click="changeTipo('zap')">Zap</button>
+                    <button @click="changeTipo(null)">Todos</button>
                 </nav>
             </div>
         </div>
-    </header>`
+    </header>`,
+    methods: {
+        changeTipo: function(tipo_) {
+            this.$parent.dataZap = this.$parent.dataViva;
+            //this.tipo=tipo_;
+        }
+    }
 });
 
 Vue.component('featured-slide-list', {
-	//props: ['item'],
+	props: ['data'],
 	template: `<section class="hero-area">
 		        <div class="hero-slides owl-carousel">
-		            <!-- Single Hero Slide -->
-		            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero1.jpg);">
+		            <div v-for="item in data" class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero3.jpg);">
 		                <div class="container h-100">
 		                    <div class="row h-100 align-items-center">
 		                        <div class="col-12">
 		                            <div class="hero-slides-content">
 		                                <h2 data-animation="fadeInUp" data-delay="100ms">Te ajuamos a encontre seu lar</h2>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-		            <!-- Single Hero Slide -->
-		            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero2.jpg);">
-		                <div class="container h-100">
-		                    <div class="row h-100 align-items-center">
-		                        <div class="col-12">
-		                            <div class="hero-slides-content">
-		                                <h2 data-animation="fadeInUp" data-delay="100ms">A casa dos seus sonhos</h2>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-		            <!-- Single Hero Slide -->
-		            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero3.jpg);">
-		                <div class="container h-100">
-		                    <div class="row h-100 align-items-center">
-		                        <div class="col-12">
-		                            <div class="hero-slides-content">
-		                                <h2 data-animation="fadeInUp" data-delay="100ms">O imóvel perfeito para você</h2>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -392,7 +381,7 @@ Vue.component('featured-list', {
                     <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
                         <!-- Property Thumbnail -->
                         <div class="property-thumb">
-                            <img src="img/bg-img/feature1.jpg" alt="">
+                            <img v-bind:src="item.images[0]"" alt="">
 
                             <div class="tag">
                                 <span>{{ item.pricingInfos.businessType=="SALE" ? "VENDA" : "ALUGUEL" }}</span>
@@ -403,24 +392,24 @@ Vue.component('featured-list', {
                         </div>
                         <!-- Property Content -->
                         <div class="property-content">
-                            <h5>Villa in Los Angeles</h5>
-                            <p class="location"><img src="img/icons/location.png" alt="">Upper Road 3411, no.34 CA</p>
-                            <p>Integer nec bibendum lacus. Suspendisse dictum enim sit amet libero malesuada.</p>
+                            <h5>{{ item.address.city }}</h5>
+                            <p class="location"><img src="img/icons/location.png" alt="">{{ item.address.neighborhood }}</p>
+                            <!--p>Integer nec bibendum lacus. Suspendisse dictum enim sit amet libero malesuada.</p-->
                             <div class="property-meta-data d-flex align-items-end justify-content-between">
                                 <div class="new-tag">
                                     <img src="img/icons/new.png" alt="">
                                 </div>
                                 <div class="bathroom">
                                     <img src="img/icons/bathtub.png" alt="">
-                                    <span>2</span>
+                                    <span>{{ item.bathrooms }}</span>
                                 </div>
                                 <div class="garage">
                                     <img src="img/icons/garage.png" alt="">
-                                    <span>2</span>
+                                    <span>{{ item.parkingSpaces }}</span>
                                 </div>
                                 <div class="space">
                                     <img src="img/icons/space.png" alt="">
-                                    <span>120 sq ft</span>
+                                    <span>{{ item.usableAreas }} m²</span>
                                 </div>
                             </div>
                         </div>

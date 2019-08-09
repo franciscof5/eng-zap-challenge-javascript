@@ -1,11 +1,12 @@
 # Code Challenge ZAP Group
 
 * Vue.js
-
+* South Real Estate HTML Bootstrap Template (free under license)
 
 		como rodar localmente?
 		* Você precisa estar conectado a internet, dependências e dados são obtidos remotamente
 		* Apenas abra o arquivo index.html
+		* index-basic.html contém a lógica pura de separação dos elementos do json de acordo com as regras de negócio, sem design ou template
 
 		como rodar os testes?
 		* Basta navegar pela interface
@@ -19,7 +20,7 @@
 - [x] Install and load vue script
 - [x] Get the data via axios
 - [x] Filter data with array filter
-- [x] Create interface for user to select tipo (viva/zap) and aplly filters
+- [ ] Create interface for user to select tipo (viva/zap) and aplly filters
 - [ ] Extra: create more filters (pricingInfos.businessType, parkingSpaces, bathrooms, bedrooms, pricingInfos.price range, pricingInfos.rentalTotalPrice range)
 - [x] Create reusable template for item view
 - [x] Beautify (bootstrap, style)

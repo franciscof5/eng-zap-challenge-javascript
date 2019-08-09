@@ -1,4 +1,6 @@
-$(document).ready(function ($) {
+//jQuery(document).ready
+//(function ($) {
+jQuery(document).ready(function($){
     'use strict';
 
     var $window = $(window);
@@ -185,4 +187,4 @@ $(document).ready(function ($) {
         });
     })
 
-})(jQuery);
+})//(jQuery);
