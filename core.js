@@ -49,7 +49,7 @@ var app = new Vue({
 			this.tipo=tipo_;
 		}
 	}
-})
+});
 
 Vue.component('item-list', {
 
@@ -64,4 +64,49 @@ Vue.component('item-list', {
 					<singe-item> {{ item.usableAreas }} </singe-item>
 					<br>
 			   </div>`,
-})
+});
+
+Vue.component('slide-list', {
+	props: ['item'],
+	template: `
+			<section class="hero-area">
+		        <div class="hero-slides owl-carousel">
+		            <!-- Single Hero Slide -->
+		            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero1.jpg);">
+		                <div class="container h-100">
+		                    <div class="row h-100 align-items-center">
+		                        <div class="col-12">
+		                            <div class="hero-slides-content">
+		                                <h2 data-animation="fadeInUp" data-delay="100ms">Te ajuamos a encontre seu lar</h2>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		            <!-- Single Hero Slide -->
+		            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero2.jpg);">
+		                <div class="container h-100">
+		                    <div class="row h-100 align-items-center">
+		                        <div class="col-12">
+		                            <div class="hero-slides-content">
+		                                <h2 data-animation="fadeInUp" data-delay="100ms">A casa dos seus sonhos</h2>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		            <!-- Single Hero Slide -->
+		            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero3.jpg);">
+		                <div class="container h-100">
+		                    <div class="row h-100 align-items-center">
+		                        <div class="col-12">
+		                            <div class="hero-slides-content">
+		                                <h2 data-animation="fadeInUp" data-delay="100ms">O imóvel perfeito para você</h2>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </section>`,
+});
