@@ -20,11 +20,11 @@
 - [x] Install and load vue script
 - [x] Get the data via axios
 - [x] Filter data with array filter
-- [ ] Create interface for user to select tipo (viva/zap) and aplly filters
+- [x] Create interface for user to select tipo (viva/zap) and aplly filters
 - [ ] Extra: create more filters (pricingInfos.businessType, parkingSpaces, bathrooms, bedrooms, pricingInfos.price range, pricingInfos.rentalTotalPrice range)
 - [x] Create reusable template for item view
 - [x] Beautify (bootstrap, style)
-- [ ] Integrate beautify template with received data
+- [x] Integrate beautify template with received data
 - [ ] Infinity scroll
 - [ ] Single view
 - [ ] Review rules and job description
