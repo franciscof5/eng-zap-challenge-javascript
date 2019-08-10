@@ -6,6 +6,7 @@ var app = new Vue({
 			loading: true,
 			errored: false,
 			data: 'Loagin data from zap servers...',
+			dataTodos: null,
 			dataZap: null,
 			dataViva: null,
             dataSlider: null,
@@ -18,7 +19,7 @@ var app = new Vue({
 		.then(response => {
 			this.loading = false;
 			
-			this.data = response.data;
+			this.dataTodos = response.data;
 			
 			this.dataZap = response.data.filter(function(item) {
 				if(
@@ -41,7 +42,9 @@ var app = new Vue({
 			});
             this.dataViva = this.dataViva.slice(0,4);
 
-            this.dataSlider = this.dataZap.slice(0,3);
+            this.dataSlider = this.dataTodos.slice(0,3);
+
+            this.data = this.dataZap;
 		}).catch(error => {
 			console.log(error)
 			this.errored = true
@@ -110,7 +113,12 @@ Vue.component('header-top', {
     </header>`,
     methods: {
         changeTipo: function(tipo_) {
-            this.$parent.dataZap = this.$parent.dataViva;
+        	if(tipo_=="zap")
+            	this.$parent.data = this.$parent.dataZap;
+            else if(tipo_=="viva")
+            	this.$parent.data = this.$parent.dataViva;
+            else
+            	this.$parent.data = this.$parent.dataTodos;
             //this.tipo=tipo_;
         }
     }
