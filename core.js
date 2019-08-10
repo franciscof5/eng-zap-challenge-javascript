@@ -651,3 +651,8 @@ Vue.component('footer-end', {
         </div>
     </footer>`
 })
+
+Vue.component('single-view', {
+	props: ['data'],
+	template: `<single>{{ data }}</single>`
+})
