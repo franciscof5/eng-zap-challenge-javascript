@@ -404,7 +404,7 @@ Vue.component('featured-list', {
                                 <span>{{ item.pricingInfos.businessType=="SALE" ? "VENDA" : "ALUGUEL" }}</span>
                             </div>
                             <div class="list-price">
-                                <p>R$ {{ item.pricingInfos.businessType=="SALE" ? item.pricingInfos.price : item.pricingInfos.rentalTotalPrice }}</p>
+                                <p>R$ {{ formatPrice(item.pricingInfos.businessType=="SALE" ? item.pricingInfos.price : item.pricingInfos.rentalTotalPrice)}}</p>
                             </div>
                         </div>
                         <!-- Property Content -->
@@ -434,7 +434,13 @@ Vue.component('featured-list', {
                 </div>
             </div>
         </div>
-    </section>`
+    </section>`,
+    methods: {
+    	formatPrice(value) {
+	        let val = (value/1).toFixed(2).replace('.', ',')
+	        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+	    }
+    }
 })
 
 Vue.component('call-action', {
