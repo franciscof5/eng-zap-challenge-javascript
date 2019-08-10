@@ -26,7 +26,8 @@ var app = new Vue({
 					(item.pricingInfos.businessType == "RENTAL" && item.pricingInfos.rentalTotalPrice>=3500) ||
 					(item.pricingInfos.businessType == "SALE" && item.pricingInfos.price>=600000) &&
 					(item.address.geoLocation.location.lon>0 && item.address.geoLocation.location.lat>0) &&
-					(item.usableAreas>0 && (item.pricingInfos.price/item.usableAreas)<=35)
+					(item.usableAreas>0 && (item.pricingInfos.price/item.usableAreas)<=35) &&
+					(isBounded(item.address.location))
 				)
 				return item;
 			});
@@ -35,8 +36,10 @@ var app = new Vue({
 			this.dataViva = response.data.filter(function(item) {
 				if(
 					(item.pricingInfos.businessType == "RENTAL" && item.pricingInfos.rentalTotalPrice<=4000) ||
-					(item.pricingInfos.businessType == "SALE" && item.pricingInfos.price<700000) &&
-					(item.address.geoLocation.location.lon>0 && item.address.geoLocation.location.lat>0)
+					(item.pricingInfos.businessType == "RENTAL" && item.pricingInfos.price<700000) &&
+					(item.pricingInfos.businessType == "SALE" && (item.pricingInfos.monthlyCondoFee/item.pricingInfos.rentalTotalPrice>0.3)) &&
+					(item.address.geoLocation.location.lon>0 && item.address.geoLocation.location.lat>0) &&
+					(isBounded(item.address.location))
 				)
 				return item;
 			});
@@ -51,13 +54,19 @@ var app = new Vue({
 		})/*.finally(() => {
 			this.loading = false
 		})*/
-	}/*,
+	},
 	methods: {
-		changeTipo: function(tipo_) {
-            alert("tipo"+tipo_);
-			this.tipo=tipo_;
+		isBounded(itemGeo) {
+			if(
+				(itemGeo.lon<=-46.693419 && itemGeo.lon>=-46.641146) &&
+				(itemGeo.lat<=-23.568704 && itemGeo.lat>=-23.546686)
+			) 
+				return true;
+			else
+				return false;
+
 		}
-	}*/
+	}
 });
 
 Vue.component('item-list', {
