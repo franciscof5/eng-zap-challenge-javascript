@@ -1,7 +1,7 @@
 var app = new Vue({
 	el: '#app',
-	data () {
-		return {
+	data: {
+		//return {
 			tipo: null,
 			loading: true,
 			errored: false,
@@ -10,7 +10,9 @@ var app = new Vue({
 			dataZap: null,
 			dataViva: null,
             dataSlider: null,
-		}
+            selectedItem: "item vazio",
+            currentComponent: 'featured-list',
+		//}
 	},
 	mounted () {
 		axios
@@ -65,8 +67,12 @@ var app = new Vue({
 			else
 				return false;
 
-		}
-	}
+		},
+		swapComponent: function(component) {
+	    	this.currentComponent = component;
+	    }
+	},
+
 });
 
 Vue.component('item-list', {
@@ -116,6 +122,7 @@ Vue.component('header-top', {
                     <button @click="changeTipo('viva')">Viva Real</button>
                     <button @click="changeTipo('zap')">Zap</button>
                     <button @click="changeTipo(null)">Todos</button>
+                    
                 </nav>
             </div>
         </div>
@@ -379,7 +386,12 @@ Vue.component('search-area', {
 });
 
 Vue.component('featured-list', {
-    props: ['data'],
+    //props: ['data'],
+	data() {
+		return {
+			data: this.$parent.data,
+		}
+	},
 	template: `<section class="featured-properties-area section-padding-100-50">
         <div class="container">
             <div class="row">
@@ -395,6 +407,7 @@ Vue.component('featured-list', {
 
                 <!-- Single Featured Property -->
                 <div class="col-12 col-md-6 col-xl-4" v-for="item in data" >
+                	<a v-on:click="swapComponent(item)">
                     <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
                         <!-- Property Thumbnail -->
                         <div class="property-thumb">
@@ -431,6 +444,7 @@ Vue.component('featured-list', {
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -439,6 +453,13 @@ Vue.component('featured-list', {
     	formatPrice(value) {
 	        let val = (value/1).toFixed(2).replace('.', ',')
 	        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+	    },
+	    swapComponent(selectedItem_) {
+	    	this.$parent.selectedItem = selectedItem_;
+	    	//alert("selectedItem_",selectedItem_);
+	    	//alert("this.$parent.selectedItem",this.$parent.selectedItem);
+	    	//console.log("selectedItem_", selectedItem_);
+	    	this.$parent.swapComponent('single-view');
 	    }
     }
 })
@@ -653,6 +674,15 @@ Vue.component('footer-end', {
 })
 
 Vue.component('single-view', {
-	props: ['data'],
-	template: `<single>{{ data }}</single>`
+	data() {
+		return {
+			selectedItem: this.$parent.selectedItem,
+		}
+	},
+	template: `<div><br><br><br><br><br><button v-on:click="voltar()">Voltar</button>ONE VIEW {{ selectedItem }}</div>`,
+	computed: {
+		voltar() {
+			this.$parent.swapComponent('featured-list');
+		}
+	}
 })

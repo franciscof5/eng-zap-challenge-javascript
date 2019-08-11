@@ -40,8 +40,10 @@
     <!--featured-slide-list v-bind:data="dataSlider"></featured-slide-list-->
     
     <!--search-area></search-area-->
-    
-    <featured-list v-bind:data="data"></featured-list>
+	
+	<div v-bind:is="currentComponent">
+
+    <!--featured-list v-bind:data="data"></featured-list-->
 
     <!--call-action></call-action-->
     
