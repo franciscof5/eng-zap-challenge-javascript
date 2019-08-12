@@ -73,17 +73,23 @@ var app = new Vue({
 		swapComponent: function(component) {
 	    	this.currentComponent = component;
 	    },
+	    changeTipo: function(tipo_) {
+	    	//used in index-basic.html
+	    	this.tipo = tipo_;
+	    	if(tipo_=="zap")
+            	this.data = this.dataZap;
+            else if(tipo_=="viva")
+            	this.data = this.dataViva;
+            else
+            	this.data = this.dataTodos;
+            this.dataSlider = this.data.slice(0,3);
+            //this.tipo=tipo_;
+        }
 	}
 });
 
 Vue.component('item-list', {
-
-	/*data: itemData,
-	/*data: function() {
-		return {
-			count: 0,
-		}
-	},/*-*/
+	//used in index.html
 	props: ['item'],
 	template: `<div>
 					<singe-item> {{ item.usableAreas }} </singe-item>
@@ -389,11 +395,7 @@ Vue.component('search-area', {
 
 Vue.component('featured-list', {
     props: ['data'],
-	/*data() {
-		return {
-			data: this.$parent.data,
-		}
-	},*/
+	
 	template: `<section class="featured-properties-area section-padding-100-50">
         <div class="container">
             <div class="row">
