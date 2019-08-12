@@ -36,13 +36,15 @@
 	
     <header-top></header-top>
     
-    <featured-slide-list v-bind:data="dataSlider" v-if="currentComponent==='DDDfeatured-list'"></featured-slide-list>
+    <featured-slide-list v-bind:data="dataSlider" v-if="currentComponent==='featured-list'"></featured-slide-list>
     
     <!--search-area></search-area-->
 	
-	<!--div v-bind:is="currentComponent" v-bind:data="data"-->
+	<!--div v-bind:is="currentComponent" v-bind:data="data"></div-->
 
-    <featured-list v-bind:data="data"></featured-list>
+    <featured-list v-bind:data="data" v-if="currentComponent==='featured-list'"></featured-list>
+
+    <single-view v-if="currentComponent==='single-view'"><single-view>
 
     <!--call-action></call-action-->
     

@@ -125,9 +125,8 @@ Vue.component('header-top', {
                 <nav class="classy-navbar justify-content-between" id="southNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="index.html"><img src="logo_zap.svg" alt=""></a>
-                    <button @click="changeTipo('viva')">Viva Real</button>
-                    <button @click="changeTipo('zap')">Zap</button>
+                    <button class="nav-brand" @click="changeTipo('zap')"><img src="logo_zap.svg" alt="" style="padding:5px;"></button>
+                    <button class="nav-brand" @click="changeTipo('viva')"><img src="logo_viva.svg" alt="" style="width:150px; background-color:#1190CD; padding:10px;"></button>
                     <button @click="changeTipo(null)">Todos</button>
                     
                 </nav>
@@ -143,6 +142,9 @@ Vue.component('header-top', {
             else
             	this.$parent.data = this.$parent.dataTodos;
             this.$parent.dataSlider = this.$parent.data.slice(0,3);
+
+            this.$parent.swapComponent('featured-list');
+	    	
             //this.tipo=tipo_;
         }
     }
@@ -152,12 +154,13 @@ Vue.component('featured-slide-list', {
 	props: ['data'],
 	template: `<section class="hero-area">
 		        <div class="hero-slides owl-carousel">
-		            <div v-for="item in data" class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero3.jpg);">
+		            <div v-for="item in data" class="single-hero-slide bg-img" >
+		            	<img v-bind:src="item.images[0]" />
 		                <div class="container h-100">
 		                    <div class="row h-100 align-items-center">
 		                        <div class="col-12">
 		                            <div class="hero-slides-content">
-		                                <!--h2 data-animation="fadeInUp" data-delay="100ms">Te ajuamos a encontre seu lar</h2-->
+		                                <h2 data-animation="fadeInUp" data-delay="100ms">{{ item.images[0] }} AA {{ item.usableArea }} Te ajuamos a encontre seu lar</h2>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -395,7 +398,11 @@ Vue.component('search-area', {
 
 Vue.component('featured-list', {
     props: ['data'],
-	
+	/*data() {
+		return {
+			data: this.$parent.data,
+		}
+	},*/
 	template: `<section class="featured-properties-area section-padding-100-50">
         <div class="container">
             <div class="row">
