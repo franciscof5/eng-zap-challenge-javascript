@@ -73,8 +73,6 @@ var app = new Vue({
 		swapComponent: function(component) {
 	    	this.currentComponent = component;
 	    },
-	},
-	computed: {
 	    changeTipo: function(tipo_) {
 	    	alert("tipo_"+tipo_);
         	if(tipo_=="zap")
