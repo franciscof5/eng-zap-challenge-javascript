@@ -10,7 +10,7 @@ jQuery(document).ready(function($){
         /*$('#preloader').fadeOut('slow', function () {
             $(this).remove();
         });*/
-        enableSlides();
+        //enableSlides();
     });
 
 
@@ -106,11 +106,9 @@ jQuery(document).ready(function($){
 })//(jQuery);
 
 function enableSlides() {
+
 	setTimeout(function() {
-
-
-    	console.log("enableSlides");
-        // :: Owl Carousel Active Code
+		// :: Owl Carousel Active Code
         if ($.fn.owlCarousel) {
             var welcomeSlide = $('.hero-slides');
 
@@ -164,7 +162,7 @@ function enableSlides() {
                 }
             });
 
-            $('.testimonials-slides').owlCarousel({
+            /*$('.testimonials-slides').owlCarousel({
                 items: 3,
                 margin: 50,
                 loop: true,
@@ -183,7 +181,7 @@ function enableSlides() {
                         items: 3
                     }
                 }
-            });
+            });*/
 
             $('.featured-properties-slides, .single-listings-sliders').owlCarousel({
                 items: 1,
@@ -196,5 +194,6 @@ function enableSlides() {
                 navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>']
             });
         }
-    }, 500)
+
+    }, 200)
     }

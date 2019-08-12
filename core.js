@@ -33,7 +33,7 @@ var app = new Vue({
 				)
 				return item;
 			});
-            this.dataZap = this.dataZap.slice(0,4);
+            //this.dataZap = this.dataZap.slice(0,4);
 
 			this.dataViva = response.data.filter(function(item) {
 				if(
@@ -45,11 +45,13 @@ var app = new Vue({
 				)
 				return item;
 			});
-            this.dataViva = this.dataViva.slice(0,4);
+            //this.dataViva = this.dataViva.slice(0,4);
 
             this.dataSlider = this.dataTodos.slice(0,3);
 
+            this.data = this.dataViva;
             this.data = this.dataZap;
+            enableSlides();
 		}).catch(error => {
 			console.log(error)
 			this.errored = true
@@ -70,7 +72,20 @@ var app = new Vue({
 		},
 		swapComponent: function(component) {
 	    	this.currentComponent = component;
-	    }
+	    },
+	},
+	computed: {
+	    changeTipo: function(tipo_) {
+	    	alert("tipo_"+tipo_);
+        	if(tipo_=="zap")
+            	this.data = this.dataZap;
+            else if(tipo_=="viva")
+            	this.data = this.dataViva;
+            else
+            	this.data = this.dataTodos;
+            this.dataSlider = this.data.slice(0,3);
+            //this.tipo=tipo_;
+        }
 	},
 
 });
@@ -135,6 +150,7 @@ Vue.component('header-top', {
             	this.$parent.data = this.$parent.dataViva;
             else
             	this.$parent.data = this.$parent.dataTodos;
+            this.$parent.dataSlider = this.$parent.data.slice(0,3);
             //this.tipo=tipo_;
         }
     }
@@ -149,7 +165,7 @@ Vue.component('featured-slide-list', {
 		                    <div class="row h-100 align-items-center">
 		                        <div class="col-12">
 		                            <div class="hero-slides-content">
-		                                <h2 data-animation="fadeInUp" data-delay="100ms">Te ajuamos a encontre seu lar</h2>
+		                                <!--h2 data-animation="fadeInUp" data-delay="100ms">Te ajuamos a encontre seu lar</h2-->
 		                            </div>
 		                        </div>
 		                    </div>
@@ -752,6 +768,7 @@ Vue.component('single-view', {
 	methods: {
 		voltar() {
 			this.$parent.swapComponent('featured-list');
+			enableSlides();
 		},
 		formatPrice(value) {
 	        let val = (value/1).toFixed(2).replace('.', ',')
