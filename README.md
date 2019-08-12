@@ -26,7 +26,7 @@
 - [x] Beautify (bootstrap, style)
 - [x] Integrate beautify template with received data
 - [ ] Infinity scroll
-- [ ] Single view
+- [x] Single view
 - [ ] Review rules and job description
 - [ ] Extra: transpill with Babel
 - [ ] Extra: get user location

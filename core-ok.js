@@ -1,7 +1,7 @@
 var app = new Vue({
 	el: '#app',
-	data: {
-		//return {
+	data () {
+		return {
 			tipo: null,
 			loading: true,
 			errored: false,
@@ -10,9 +10,7 @@ var app = new Vue({
 			dataZap: null,
 			dataViva: null,
             dataSlider: null,
-            selectedItem: "item vazio",
-            currentComponent: 'featured-list',
-		//}
+		}
 	},
 	mounted () {
 		axios
@@ -33,7 +31,7 @@ var app = new Vue({
 				)
 				return item;
 			});
-            //this.dataZap = this.dataZap.slice(0,4);
+            this.dataZap = this.dataZap.slice(0,4);
 
 			this.dataViva = response.data.filter(function(item) {
 				if(
@@ -45,13 +43,11 @@ var app = new Vue({
 				)
 				return item;
 			});
-            //this.dataViva = this.dataViva.slice(0,4);
+            this.dataViva = this.dataViva.slice(0,4);
 
             this.dataSlider = this.dataTodos.slice(0,3);
 
-            //this.data = this.dataViva;
             this.data = this.dataZap;
-            enableSlides();
 		}).catch(error => {
 			console.log(error)
 			this.errored = true
@@ -69,10 +65,7 @@ var app = new Vue({
 			else
 				return false;
 
-		},
-		swapComponent: function(component) {
-	    	this.currentComponent = component;
-	    },
+		}
 	}
 });
 
@@ -123,20 +116,18 @@ Vue.component('header-top', {
                     <button @click="changeTipo('viva')">Viva Real</button>
                     <button @click="changeTipo('zap')">Zap</button>
                     <button @click="changeTipo(null)">Todos</button>
-                    
                 </nav>
             </div>
         </div>
     </header>`,
     methods: {
-        changeTipo: function(tipo_) {        	
+        changeTipo: function(tipo_) {
         	if(tipo_=="zap")
             	this.$parent.data = this.$parent.dataZap;
             else if(tipo_=="viva")
             	this.$parent.data = this.$parent.dataViva;
             else
             	this.$parent.data = this.$parent.dataTodos;
-            this.$parent.dataSlider = this.$parent.data.slice(0,3);
             //this.tipo=tipo_;
         }
     }
@@ -151,7 +142,7 @@ Vue.component('featured-slide-list', {
 		                    <div class="row h-100 align-items-center">
 		                        <div class="col-12">
 		                            <div class="hero-slides-content">
-		                                <!--h2 data-animation="fadeInUp" data-delay="100ms">Te ajuamos a encontre seu lar</h2-->
+		                                <h2 data-animation="fadeInUp" data-delay="100ms">Te ajuamos a encontre seu lar</h2>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -389,11 +380,6 @@ Vue.component('search-area', {
 
 Vue.component('featured-list', {
     props: ['data'],
-	/*data() {
-		return {
-			data: this.$parent.data,
-		}
-	},*/
 	template: `<section class="featured-properties-area section-padding-100-50">
         <div class="container">
             <div class="row">
@@ -409,11 +395,10 @@ Vue.component('featured-list', {
 
                 <!-- Single Featured Property -->
                 <div class="col-12 col-md-6 col-xl-4" v-for="item in data" >
-                	<a v-on:click="swapComponent(item)">
                     <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
                         <!-- Property Thumbnail -->
                         <div class="property-thumb">
-                            <img v-bind:src="item.images[0]" alt="">
+                            <img v-bind:src="item.images[0]"" alt="">
 
                             <div class="tag">
                                 <span>{{ item.pricingInfos.businessType=="SALE" ? "VENDA" : "ALUGUEL" }}</span>
@@ -446,7 +431,6 @@ Vue.component('featured-list', {
                             </div>
                         </div>
                     </div>
-                    </a>
                 </div>
             </div>
         </div>
@@ -455,14 +439,6 @@ Vue.component('featured-list', {
     	formatPrice(value) {
 	        let val = (value/1).toFixed(2).replace('.', ',')
 	        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-	    },
-	    swapComponent(selectedItem_) {
-	    	this.$parent.selectedItem = selectedItem_;
-	    	//alert("selectedItem_",selectedItem_);
-	    	//alert("this.$parent.selectedItem",this.$parent.selectedItem);
-	    	//console.log("selectedItem_", selectedItem_);
-	    	this.$parent.swapComponent('single-view');
-	    	enableSlides();
 	    }
     }
 })
@@ -677,88 +653,6 @@ Vue.component('footer-end', {
 })
 
 Vue.component('single-view', {
-	data() {
-		return {
-			selectedItem: this.$parent.selectedItem,
-		}
-	},
-	template: `<section class="listings-content-wrapper section-padding-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <!-- Single Listings Slides -->
-                    <div class="single-listings-sliders owl-carousel">
-                        <!-- Single Slide -->
-                        <img v-for="selimg in selectedItem.images" v-bind:src="selimg" alt="">
-                        
-                    </div>
-                </div>
-            </div>
-            <button v-on:click="voltar()">Voltar</button>
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="listings-content">
-                        <!-- Price -->
-                        <div class="list-price">
-                            <div class="list-price">
-                                <p>R$ {{ formatPrice(selectedItem.pricingInfos.businessType=="SALE" ? selectedItem.pricingInfos.price : selectedItem.pricingInfos.rentalTotalPrice)}} [<span>{{ selectedItem.pricingInfos.businessType=="SALE" ? "VENDA" : "ALUGUEL" }}</span>]</p>
-                            </div>
-                        </div>
-                        <!--h5>Town house with Modern Architecture</h5-->
-                        <p class="location"><img src="img/icons/location.png" alt="">{{ selectedItem.address.neighborhood }}</p>
-                        <!--p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odiomattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. Etiam nec odio vestibulum est mat tis effic iturut magna. Curabitur rhoncus auctor eleifend. Fusce venenatis diam urna, eu pharetra arcu varius ac. Etiam cursus turpis lectus, id iaculis risus tempor id. Phasellus fringilla nisl sed sem scelerisque, eget aliquam magna vehicula.</p-->
-                        <!-- Meta -->
-                        <div class="property-meta-data d-flex align-items-end">
-                            <div class="new-tag">
-                                <img src="img/icons/new.png" alt="">
-                            </div>
-                            <div class="bathroom">
-                                <img src="img/icons/bathtub.png" alt="">
-                                <span>{{ selectedItem.bathrooms }}</span>
-                            </div>
-                            <div class="garage">
-                                <img src="img/icons/garage.png" alt="">
-                                <span>{{ selectedItem.parkingSpaces }}</span>
-                            </div>
-                            <div class="space">
-                                <img src="img/icons/space.png" alt="">
-                                <span>{{ selectedItem.usableAreas }} m²</span>
-                            </div>
-                        </div>
-
-                        <!-- Core Features >
-                        <ul class="listings-core-features d-flex align-items-center">
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Gated Community</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Automatic Sprinklers</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Fireplace</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Window Shutters</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Ocean Views</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Heated Floors</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Heated Floors</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Private Patio</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Window Shutters</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Fireplace</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Beach Access</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i> Rooftop Terrace</li>
-                        </ul-->
-                        <!-- Listings Btn Groups -->
-                        <!--div class="listings-btn-groups">
-                            <a href="#" class="btn south-btn">See Floor plans</a>
-                            <a href="#" class="btn south-btn active">calculate mortgage</a>
-                        </div-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>`,
-	methods: {
-		voltar() {
-			this.$parent.swapComponent('featured-list');
-			enableSlides();
-		},
-		formatPrice(value) {
-	        let val = (value/1).toFixed(2).replace('.', ',')
-	        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-	    },
-	}
+	props: ['data'],
+	template: `<single>{{ data }}</single>`
 })
