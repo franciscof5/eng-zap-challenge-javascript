@@ -16,7 +16,6 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/classy-nav.min.js"></script>
     <script src="js/plugins.js"></script>
-    <!--script src="js/active.js"></script-->
     <script src="core.js"></script>
            
     <title>Desafio Grupo ZAP - Javascript - Francisco Mat</title>
@@ -41,7 +40,7 @@
     
     <!--search-area></search-area-->
 	
-	<div v-bind:is="currentComponent">
+	<div v-bind:is="currentComponent" v-bind:data="data">
 
     <!--featured-list v-bind:data="data"></featured-list-->
 
@@ -53,7 +52,8 @@
     
     <!--footer-end></footer-end-->
 </div>
-
+<script src="js/active.js"></script>
+    
 <script src="core.js"></script></body>
 
 </html>

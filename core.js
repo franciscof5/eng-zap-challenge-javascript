@@ -128,7 +128,7 @@ Vue.component('header-top', {
         </div>
     </header>`,
     methods: {
-        changeTipo: function(tipo_) {
+        changeTipo: function(tipo_) {        	
         	if(tipo_=="zap")
             	this.$parent.data = this.$parent.dataZap;
             else if(tipo_=="viva")
@@ -411,7 +411,7 @@ Vue.component('featured-list', {
                     <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
                         <!-- Property Thumbnail -->
                         <div class="property-thumb">
-                            <img v-bind:src="item.images[0]"" alt="">
+                            <img v-bind:src="item.images[0]" alt="">
 
                             <div class="tag">
                                 <span>{{ item.pricingInfos.businessType=="SALE" ? "VENDA" : "ALUGUEL" }}</span>
@@ -460,6 +460,7 @@ Vue.component('featured-list', {
 	    	//alert("this.$parent.selectedItem",this.$parent.selectedItem);
 	    	//console.log("selectedItem_", selectedItem_);
 	    	this.$parent.swapComponent('single-view');
+	    	enableSlides();
 	    }
     }
 })
@@ -679,10 +680,82 @@ Vue.component('single-view', {
 			selectedItem: this.$parent.selectedItem,
 		}
 	},
-	template: `<div><br><br><br><br><br><button v-on:click="voltar()">Voltar</button>ONE VIEW {{ selectedItem }}</div>`,
-	computed: {
+	template: `<section class="listings-content-wrapper section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Single Listings Slides -->
+                    <div class="single-listings-sliders owl-carousel">
+                        <!-- Single Slide -->
+                        <img v-for="selimg in selectedItem.images" v-bind:src="selimg" alt="">
+                        
+                    </div>
+                </div>
+            </div>
+            <button v-on:click="voltar()">Voltar</button>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="listings-content">
+                        <!-- Price -->
+                        <div class="list-price">
+                            <div class="list-price">
+                                <p>R$ {{ formatPrice(selectedItem.pricingInfos.businessType=="SALE" ? selectedItem.pricingInfos.price : selectedItem.pricingInfos.rentalTotalPrice)}} [<span>{{ selectedItem.pricingInfos.businessType=="SALE" ? "VENDA" : "ALUGUEL" }}</span>]</p>
+                            </div>
+                        </div>
+                        <!--h5>Town house with Modern Architecture</h5-->
+                        <p class="location"><img src="img/icons/location.png" alt="">{{ selectedItem.address.neighborhood }}</p>
+                        <!--p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odiomattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. Etiam nec odio vestibulum est mat tis effic iturut magna. Curabitur rhoncus auctor eleifend. Fusce venenatis diam urna, eu pharetra arcu varius ac. Etiam cursus turpis lectus, id iaculis risus tempor id. Phasellus fringilla nisl sed sem scelerisque, eget aliquam magna vehicula.</p-->
+                        <!-- Meta -->
+                        <div class="property-meta-data d-flex align-items-end">
+                            <div class="new-tag">
+                                <img src="img/icons/new.png" alt="">
+                            </div>
+                            <div class="bathroom">
+                                <img src="img/icons/bathtub.png" alt="">
+                                <span>{{ selectedItem.bathrooms }}</span>
+                            </div>
+                            <div class="garage">
+                                <img src="img/icons/garage.png" alt="">
+                                <span>{{ selectedItem.parkingSpaces }}</span>
+                            </div>
+                            <div class="space">
+                                <img src="img/icons/space.png" alt="">
+                                <span>{{ selectedItem.usableAreas }} m²</span>
+                            </div>
+                        </div>
+
+                        <!-- Core Features >
+                        <ul class="listings-core-features d-flex align-items-center">
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Gated Community</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Automatic Sprinklers</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Fireplace</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Window Shutters</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Ocean Views</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Heated Floors</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Heated Floors</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Private Patio</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Window Shutters</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Fireplace</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Beach Access</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i> Rooftop Terrace</li>
+                        </ul-->
+                        <!-- Listings Btn Groups -->
+                        <!--div class="listings-btn-groups">
+                            <a href="#" class="btn south-btn">See Floor plans</a>
+                            <a href="#" class="btn south-btn active">calculate mortgage</a>
+                        </div-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>`,
+	methods: {
 		voltar() {
 			this.$parent.swapComponent('featured-list');
-		}
+		},
+		formatPrice(value) {
+	        let val = (value/1).toFixed(2).replace('.', ',')
+	        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+	    },
 	}
 })
