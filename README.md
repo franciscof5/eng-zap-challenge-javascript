@@ -66,3 +66,14 @@
 
 Old link: http://grupozap-code-challenge.s3-website-us-east-1.amazonaws.com/#zap
 Challenge description: https://grupozap.github.io/cultura/challenges/engineering.html
+
+# Grupo ZAP feedback
+Durante a primeira fase você realizou o nosso teste, segue a nossa avaliação:
+
+ * Escreveu metade do código em inglês e outra metade em português, deixando o código confuso.
+ * Utilizou a regua de negocio incorreta o valor esperado era de ZAP: 268 e Viva: 136.
+ * Não configurou um servidor de desenvolvimento.
+ * Utilização de Vue+ Jquery juntos.
+
+Como pontos de melhoria sugerimos que você busque mais sobre  framework que utilizou (quais problemas ele resolve, qual a maneira mais indicada de se trabalhar com ele) e também sobre como funcionam “SPAs” (conceitos de rotas, acessibilidade, etc)
+
