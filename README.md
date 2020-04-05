@@ -1,5 +1,7 @@
 # Code Challenge ZAP Group
 
+![eng-zap-code-challenge-vuejs-2019](eng-zap-cole-challenge.jpg)
+
 * Vue.js
 * South Real Estate HTML Bootstrap Template (free under license)
 
